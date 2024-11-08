@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:spotify_flutter_apk/core/configs/theme/app_colors.dart';
 
 class AppTheme {
-
   static final lightTheme = ThemeData(
     primaryColor: AppColors.primary,
     scaffoldBackgroundColor: AppColors.lightBackground,
@@ -11,8 +10,10 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
+        elevation: 0,
         textStyle: const TextStyle(
-          fontSize: 20, fontWeight: FontWeight.bold,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
@@ -20,7 +21,6 @@ class AppTheme {
       ),
     ),
   );
-
 
   static final darkTheme = ThemeData(
     primaryColor: AppColors.primary,
@@ -29,9 +29,11 @@ class AppTheme {
     fontFamily: "Satoshi",
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        elevation: 0,
         backgroundColor: AppColors.primary,
         textStyle: const TextStyle(
-          fontSize: 20, fontWeight: FontWeight.bold,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
@@ -39,5 +41,4 @@ class AppTheme {
       ),
     ),
   );
-
 }
