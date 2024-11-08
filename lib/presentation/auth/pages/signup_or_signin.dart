@@ -6,6 +6,7 @@ import 'package:spotify_flutter_apk/common/widgets/button/basic_app_button.dart'
 import 'package:spotify_flutter_apk/core/configs/assets/app_images.dart';
 import 'package:spotify_flutter_apk/core/configs/assets/app_vectors.dart';
 import 'package:spotify_flutter_apk/core/configs/theme/app_colors.dart';
+import 'package:spotify_flutter_apk/presentation/auth/pages/signup.dart';
 
 class SignUpOrSignInPage extends StatelessWidget {
   const SignUpOrSignInPage({super.key});
@@ -67,11 +68,18 @@ class SignUpOrSignInPage extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: BasicAppButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext builder) => SignupPage(),
+                              ),
+                            );
+                          },
                           title: 'Register',
                         ),
                       ),
-                      SizedBox(
+                       SizedBox(
                         width: 20,
                       ),
                       Expanded(
@@ -82,7 +90,9 @@ class SignUpOrSignInPage extends StatelessWidget {
                             "Sign in",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: context.isDarkMode ? Colors.white : Colors.black,
+                              color: context.isDarkMode
+                                  ? Colors.white
+                                  : Colors.black,
                               fontSize: 16,
                             ),
                           ),
