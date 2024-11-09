@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotify_flutter_apk/common/widgets/appbar/app_bar.dart';
 import 'package:spotify_flutter_apk/common/widgets/button/basic_app_button.dart';
 import 'package:spotify_flutter_apk/core/configs/assets/app_vectors.dart';
+import 'package:spotify_flutter_apk/presentation/auth/pages/signin.dart';
 
 class SignupPage extends StatelessWidget {
   const SignupPage({super.key});
@@ -22,34 +23,39 @@ class SignupPage extends StatelessWidget {
           vertical: 50,
           horizontal: 30,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _registerText(),
-            SizedBox(
-              height: 50,
+        child: Container(
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _registerText(),
+                SizedBox(
+                  height: 50,
+                ),
+                _fullNameField(context),
+                SizedBox(
+                  height: 15,
+                ),
+                _userNameField(context),
+                SizedBox(
+                  height: 15,
+                ),
+                _emailField(context),
+                SizedBox(
+                  height: 15,
+                ),
+                _passwordField(context),
+                SizedBox(
+                  height: 15,
+                ),
+                BasicAppButton(
+                  onPressed: () {},
+                  title: 'Create Account',
+                ),
+              ],
             ),
-            _fullNameField(context),
-            SizedBox(
-              height: 15,
-            ),
-            _userNameField(context),
-            SizedBox(
-              height: 15,
-            ),
-            _emailField(context),
-            SizedBox(
-              height: 15,
-            ),
-            _passwordField(context),
-            SizedBox(
-              height: 15,
-            ),
-            BasicAppButton(
-              onPressed: () {},
-              title: 'Create Account',
-            ),
-          ],
+          ),
         ),
       ),
       bottomNavigationBar: _signInText(context),
@@ -113,7 +119,14 @@ class SignupPage extends StatelessWidget {
             ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext builder) => SignInPage(),
+                ),
+              );
+            },
             child: Text("Sign In"),
           ),
         ],
