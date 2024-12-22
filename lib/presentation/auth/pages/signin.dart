@@ -30,7 +30,7 @@ class SignInPage extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
-            _emailOrUserNameField(context),
+            _userNameField(context),
             SizedBox(
               height: 15,
             ),
@@ -60,10 +60,10 @@ class SignInPage extends StatelessWidget {
     );
   }
 
-  Widget _emailOrUserNameField(BuildContext context) {
+  Widget _userNameField(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        hintText: "Enter Username or Email",
+        hintText: "Enter Username",
       ).applyDefaults(Theme.of(context).inputDecorationTheme),
     );
   }

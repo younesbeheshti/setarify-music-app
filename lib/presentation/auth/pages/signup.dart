@@ -41,10 +41,6 @@ class SignupPage extends StatelessWidget {
                 SizedBox(
                   height: 15,
                 ),
-                _emailField(context),
-                SizedBox(
-                  height: 15,
-                ),
                 _passwordField(context),
                 SizedBox(
                   height: 15,
@@ -85,14 +81,6 @@ class SignupPage extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         hintText: "username",
-      ).applyDefaults(Theme.of(context).inputDecorationTheme),
-    );
-  }
-
-  Widget _emailField(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: "Email",
       ).applyDefaults(Theme.of(context).inputDecorationTheme),
     );
   }
