@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:spotify_flutter_apk/core/configs/theme/app_theme.dart';
 import 'package:spotify_flutter_apk/presentation/choose_mode/bloc/theme_cubit.dart';
 import 'package:spotify_flutter_apk/presentation/splash/pages/splash.dart';
+import 'package:spotify_flutter_apk/service_locator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,6 +15,8 @@ Future<void> main() async {
         ? HydratedStorage.webStorageDirectory
         : await getApplicationDocumentsDirectory(),
   );
+
+  await initializeDependencies();
   runApp(const MyApp());
 }
 
