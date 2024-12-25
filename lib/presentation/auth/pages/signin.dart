@@ -8,7 +8,7 @@ import 'package:spotify_flutter_apk/presentation/auth/pages/signup.dart';
 
 import '../../../domain/usecases/auth/sign_in.dart';
 import '../../../service_locator.dart';
-import '../../root/pages/root.dart';
+import '../../home/pages/home.dart';
 
 class SignInPage extends StatelessWidget {
   SignInPage({super.key});
@@ -49,6 +49,16 @@ class SignInPage extends StatelessWidget {
             ),
             BasicAppButton(
               onPressed: () async {
+
+                // TODO: just for testing, it has to be removed
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ),
+                );
+
+
                 var result = await sl<SignInUseCase>().call(
                   SignInUserReq(
                     userName: _userNameController.text.toString(),
@@ -65,7 +75,7 @@ class SignInPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => RootPage(),
+                      builder: (context) => HomePage(),
                     ),
                   );
                 });

@@ -16,7 +16,7 @@ class AuthBackendServiceImpl implements AuthBackendService {
   Future<Either> signIn(SignInUserReq signInUserReq) async {
     try {
       final response = await http.post(
-        Uri.parse("http://localhost:8080/user"),
+        Uri.parse("http://localhost:8080/auth"),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -30,6 +30,8 @@ class AuthBackendServiceImpl implements AuthBackendService {
 
       print(response.body);
 
+      //TODO : fetch the user date (like name, username and musics ...)
+
       return const Right("SignIn was Success");
     } catch (e) {
       print(e);
@@ -40,7 +42,6 @@ class AuthBackendServiceImpl implements AuthBackendService {
 
   @override
   Future<Either> signUp(CreateUserReq createUserReq) async {
-
     try {
       final response = await http.post(
         Uri.parse("http://localhost:8080/user"),
@@ -58,8 +59,25 @@ class AuthBackendServiceImpl implements AuthBackendService {
 
       print(response.body);
 
+      // TODO: make a instance of collection of users in db
+      // actually it is not necessary, it handled by backend
+      // FirebaseFirstore.instance.collection("users").add(
+      //   {
+      //     "name": createUserReq.fullName,
+      //     "userName": createUserReq.userName,
+      //   },
+      //   },);
+
       return const Right("SignUp was Success");
     } catch (e) {
+
+      String message = "";
+
+      // if (e.message == 'userName-already-in-use')
+      //   {
+      //     message = "userName already in use";
+      //   }
+
       print(e);
 
       return Left(e.toString());

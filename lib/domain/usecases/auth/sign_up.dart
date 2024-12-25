@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:spotify_flutter_apk/domain/repository/auth.dart';
+import 'package:spotify_flutter_apk/domain/repository/auth/auth.dart';
 
 import '../../../core/usecase/usecase.dart';
 import '../../../data/models/auth/create_user_req.dart';

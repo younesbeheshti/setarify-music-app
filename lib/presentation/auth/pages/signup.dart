@@ -4,7 +4,7 @@ import 'package:spotify_flutter_apk/common/widgets/appbar/app_bar.dart';
 import 'package:spotify_flutter_apk/common/widgets/button/basic_app_button.dart';
 import 'package:spotify_flutter_apk/core/configs/assets/app_vectors.dart';
 import 'package:spotify_flutter_apk/presentation/auth/pages/signin.dart';
-import 'package:spotify_flutter_apk/presentation/root/pages/root.dart';
+import 'package:spotify_flutter_apk/presentation/home/pages/home.dart';
 
 import '../../../data/models/auth/create_user_req.dart';
 import '../../../domain/usecases/auth/sign_up.dart';
@@ -74,7 +74,7 @@ class SignupPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => RootPage(),
+                          builder: (context) => HomePage(),
                         ),
                       );
                     });
