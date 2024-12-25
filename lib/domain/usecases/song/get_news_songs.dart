@@ -6,7 +6,7 @@ import '../../../service_locator.dart';
 
 class GetNewsSongsUseCase extends UseCase<Either, dynamic> {
   @override
-  Future<Either> call(params) async {
+  Future<Either> call({params}) async {
     return await sl<SongRepositoryImpl>().getNewsSongs();
   }
   
