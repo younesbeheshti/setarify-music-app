@@ -7,9 +7,9 @@ import '../../../service_locator.dart';
 
 class SignUpUseCase extends UseCase<Either, CreateUserReq> {
   @override
-  Future<Either> call(CreateUserReq params) async {
+  Future<Either> call({CreateUserReq? params}) async {
     // TODO: implement call
-    return sl<AuthRepository>().signUp(params);
+    return sl<AuthRepository>().signUp(params!);
   }
 
 }

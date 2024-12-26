@@ -58,7 +58,7 @@ class SignupPage extends StatelessWidget {
                 BasicAppButton(
                   onPressed: () async {
                     var result = await sl<SignUpUseCase>().call(
-                      CreateUserReq(
+                      params: CreateUserReq(
                         fullName: _fullNameController.text.toString(),
                         userName: _userNameController.text.toString(),
                         password: _passwordController.text.toString(),

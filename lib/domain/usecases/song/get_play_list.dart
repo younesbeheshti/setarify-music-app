@@ -4,11 +4,11 @@ import '../../../core/usecase/usecase.dart';
 import '../../../service_locator.dart';
 import '../../repository/music/song_repo.dart';
 
-class GetNewsSongsUseCase extends UseCase<Either, dynamic> {
+class GetPlayListUseCase extends UseCase<Either, dynamic> {
   @override
   Future<Either> call({params}) async {
-    return await sl<SongsRepository>().getNewsSongs();
+    return await sl<SongsRepository>().getPlayList();
   }
-  
+
 
 }

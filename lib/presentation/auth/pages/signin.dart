@@ -60,7 +60,7 @@ class SignInPage extends StatelessWidget {
 
 
                 var result = await sl<SignInUseCase>().call(
-                  SignInUserReq(
+                  params: SignInUserReq(
                     userName: _userNameController.text.toString(),
                     password: _passwordController.text.toString(),
                   ),
