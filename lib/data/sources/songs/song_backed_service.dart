@@ -6,6 +6,7 @@ import '../../models/song/song_model.dart';
 abstract class SongService {
   Future<Either> getNewsSongs();
   Future<Either> getPlayList();
+  Future<Either> addOrRemoveFavoriteSongs(String songId);
 }
 
 class SongServiceImpl implements SongService {
@@ -52,6 +53,12 @@ class SongServiceImpl implements SongService {
     }catch (e) {
       return Left(e.toString());
     }
+  }
+
+  @override
+  Future<Either> addOrRemoveFavoriteSongs(String songId) {
+    // TODO: implement addOrRemoveFavoriteSongs
+    throw UnimplementedError();
   }
 
 }

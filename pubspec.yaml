@@ -42,6 +42,7 @@ dependencies:
   http: ^1.2.2
   get_it: ^8.0.3
   dartz: ^0.10.1
+  just_audio: ^0.9.42
 
 dev_dependencies:
   flutter_test:
