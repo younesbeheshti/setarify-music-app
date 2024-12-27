@@ -58,7 +58,6 @@ extension SongModelExt on SongModel {
       imageUrl: imageUrl!,
       songUrl: songUrl!,
       isFavorite: isFavorite!,
-      songId: songId!,
     );
   }
 }
