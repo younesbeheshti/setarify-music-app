@@ -62,9 +62,9 @@ class _NewsSongsState extends State<NewsSongs> {
               MaterialPageRoute(
                 builder:
                     (BuildContext context) =>
-                        SongPlayerPage(),
+                        // SongPlayerPage(),
                         //TODO : pass the songs
-                        // SongPlayerPage(songEntity : songs[index]),
+                        SongPlayerPage(songEntity : songs[index]),
               ),
             );
           },

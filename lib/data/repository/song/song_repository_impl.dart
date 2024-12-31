@@ -25,4 +25,15 @@ class SongRepositoryImpl implements SongsRepository {
     return await sl<SongService>().isFavoriteSong(songId);
   }
 
+  @override
+  Future<Either> getUserFavoriteSongs() {
+    // TODO: implement getUserFavoriteSongs
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String> getSongUrl(String song_slug) async{
+    return await sl<SongService>().getSongUrl(song_slug);
+  }
+
 }

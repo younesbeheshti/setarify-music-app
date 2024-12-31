@@ -103,8 +103,8 @@ class _PlayListState extends State<PlayList> {
                 builder: (BuildContext context) =>
 
                     //TODO : pass the music
-                    SongPlayerPage(songEntity : songs[index]),
-                    // SongPlayerPage(),
+                    // SongPlayerPage(songEntity : song[index]),
+                    SongPlayerPage(),
               ),
             );
           },

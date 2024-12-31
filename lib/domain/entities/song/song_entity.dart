@@ -1,11 +1,13 @@
 class SongEntity {
   final String title;
-  final String artist;
-  final String album;
-  final String imageUrl;
-  final String songUrl;
-  final bool isFavorite;
-  final String songId;
+  final String slug;
+  final String genre;
+  final List artist;
+  String?  release_date;
+  final Map album;
+  String? cover;
+  final bool liked;
+  String? songUrl;
 
   // final String title;
   // final String artist;
@@ -25,13 +27,13 @@ class SongEntity {
 
   SongEntity({
     required this.title,
+    required this.slug,
+    required this.genre,
     required this.artist,
+    this.release_date,
     required this.album,
-    required this.imageUrl,
-    required this.songUrl,
-    required this.isFavorite,
-    required this.songId
+    this.cover,
+    required this.liked,
+    this.songUrl,
   });
-
-
 }

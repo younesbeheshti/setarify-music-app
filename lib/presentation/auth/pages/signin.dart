@@ -50,13 +50,15 @@ class SignInPage extends StatelessWidget {
             BasicAppButton(
               onPressed: () async {
 
+                print("sign ining");
+
                 // TODO: just for testing, it has to be removed
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(),
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => HomePage(),
+                //   ),
+                // );
 
 
                 var result = await sl<SignInUseCase>().call(
@@ -65,6 +67,8 @@ class SignInPage extends StatelessWidget {
                     password: _passwordController.text.toString(),
                   ),
                 );
+
+                print("hello im here");
 
                 result.fold((l) {
                   var snackBar = SnackBar(
@@ -80,7 +84,7 @@ class SignInPage extends StatelessWidget {
                   );
                 });
               },
-              title: 'Create Account',
+              title: 'Sign In',
             ),
           ],
         ),

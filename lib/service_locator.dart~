@@ -21,13 +21,6 @@ final sl = GetIt.instance;
 
 Future<void> initializeDependencies() async {
 
-  sl.registerSingleton<FlutterSecureStorage>(FlutterSecureStorage());
-
-  // Then register SecureStorageService
-  sl.registerSingleton<SecureStorageService>(
-    SecureStorageService(sl<FlutterSecureStorage>()),
-  );
-
   sl.registerSingleton<AuthBackendService>(
     AuthBackendServiceImpl(),
   );
@@ -72,7 +65,12 @@ Future<void> initializeDependencies() async {
     GetUserUseCase(),
   );
 
+  sl.registerSingleton<FlutterSecureStorage>(await FlutterSecureStorage());
 
+  // Then register SecureStorageService
+  sl.registerSingleton<SecureStorageService>(
+    SecureStorageService(await sl<FlutterSecureStorage>()),
+  );
 
 
 

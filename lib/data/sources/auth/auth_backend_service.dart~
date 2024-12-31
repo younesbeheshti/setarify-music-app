@@ -25,7 +25,8 @@ abstract class AuthBackendService {
 }
 
 class AuthBackendServiceImpl implements AuthBackendService {
-  final storage = sl<SecureStorageService>();
+
+  final FlutterSecureStorage storage = sl<SecureStorageService>().getStorage() as FlutterSecureStorage;
 
   @override
   Future<Either> signIn(SignInUserReq signInUserReq) async {

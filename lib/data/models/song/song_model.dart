@@ -2,30 +2,36 @@ import 'package:spotify_flutter_apk/domain/entities/song/song_entity.dart';
 
 class SongModel {
   String? title;
-  String? artist;
-  String? album;
-  String? imageUrl;
+  String? slug;
+  String? genre;
+  List? artist;
+  String? release_date;
+  Map? album;
+  String? cover;
+  bool? liked;
   String? songUrl;
-  bool? isFavorite;
-  String? songId;
 
   SongModel({
     required this.title,
+    required this.slug,
+    required this.genre,
     required this.artist,
+    this.release_date,
     required this.album,
-    required this.imageUrl,
-    required this.songUrl,
-    required this.isFavorite,
-    required this.songId
+    this.cover,
+    required this.liked,
+    this.songUrl,
   });
-
 
   SongModel.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     artist = json['artist'];
     album = json['album'];
-    imageUrl = json['imageUrl'];
-    songUrl = json['songUrl'];
+    cover = json['cover'];
+    slug = json['slug'];
+    genre = json['genre'];
+    release_date = json['release_date'];
+    liked = json['liked'];
   }
 
   // String? title;
@@ -55,10 +61,12 @@ extension SongModelExt on SongModel {
       title: title!,
       artist: artist!,
       album: album!,
-      imageUrl: imageUrl!,
-      songUrl: songUrl!,
-      isFavorite: isFavorite!,
-      songId: songId!,
+      cover: cover??"",
+      slug: slug!,
+      genre: genre!,
+      release_date: release_date??"",
+      liked: liked!,
+      songUrl: songUrl?? "",
     );
   }
 }

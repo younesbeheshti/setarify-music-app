@@ -10,9 +10,10 @@ import 'package:spotify_flutter_apk/presentation/song_player/bloc/song_player_st
 
 class SongPlayerPage extends StatelessWidget {
   //TODO : get songEntity
-  final SongEntity songEntity;
+  // final SongEntity songEntity;
+  // SongPlayerPage({super.key, required this.songEntity});
 
-  SongPlayerPage({super.key, required this.songEntity});
+  SongPlayerPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,10 @@ class SongPlayerPage extends StatelessWidget {
         ),
       ),
       body: BlocProvider(
-        create: (context) => SongPlayerCubit()..loadSong(songEntity.slug),
+        create: (context) => SongPlayerCubit()..loadSong(
+            //TODO : url for the song duration there is problem with link ...
+            // AppURLs.songUrl + songEntity.image + ' - ' + songEntity.title + 'mp3?' + AppURLs.mediaAlt
+            'https://github.com/rafaelreis-hotmart/Audio-dSample-files/blob/master/sample.mp3?raw=true'),
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
           child: Column(

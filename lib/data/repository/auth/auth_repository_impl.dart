@@ -18,4 +18,10 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either> signUp(CreateUserReq createUserReq) async {
     return await sl<AuthBackendService>().signUp(createUserReq);
   }
+
+  @override
+  Future<Either> getUser() async{
+    return await sl<AuthBackendService>().getUser();
+  }
+
 }
