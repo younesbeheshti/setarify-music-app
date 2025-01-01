@@ -7,12 +7,10 @@ import 'package:spotify_flutter_apk/domain/entities/song/song_entity.dart';
 import '../../bloc/favorite_button_state.dart';
 
 class FavoriteButton extends StatelessWidget {
+  final SongEntity songEntity;
+  final Function? function;
 
-  FavoriteButton({super.key});
-
-  // TODO : get songEntity
-  // final SongEntity songEntity;
-  // FavoriteButton({super.key, required this.songEntity});
+  FavoriteButton({super.key, required this.songEntity, this.function});
 
   @override
   Widget build(BuildContext context) {
@@ -24,34 +22,32 @@ class FavoriteButton extends StatelessWidget {
             return IconButton(
               onPressed: () {
                 context.read<FavoriteButtonCubit>().favoriteButtonUpdated(
-                    // TODO : get songId
-                    // songEntity.songId
-                  ""
-                );
+                    songEntity);
+
+                if (function != null) {
+                  function!();
+                }
               },
-              icon: Icon(Icons.favorite_outline_outlined),
-              // TODO : add toggle favorite
-              // icon: songEntity.isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border_outlined),
+              icon: songEntity.liked!
+                  ? Icon(Icons.favorite)
+                  : Icon(Icons.favorite_border_outlined),
               iconSize: 25,
-              color: context.isDarkMode
-                  ? Color(0xff959595)
-                  : Color(0xff555555),
+              color: context.isDarkMode ? Color(0xff959595) : Color(0xff555555),
             );
           }
 
           if (state is FavoriteButtonUpdated) {
             return IconButton(
               onPressed: () {
-                context.read<FavoriteButtonCubit>().favoriteButtonUpdated(
-                    // TODO : get songId
-                    // songEntity.songId
-                  "");
+                context
+                    .read<FavoriteButtonCubit>()
+                    .favoriteButtonUpdated(songEntity);
               },
-              icon: state.isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border_outlined),
+              icon: state.isFavorite
+                  ? Icon(Icons.favorite)
+                  : Icon(Icons.favorite_border_outlined),
               iconSize: 25,
-              color: context.isDarkMode
-                  ? Color(0xff959595)
-                  : Color(0xff555555),
+              color: context.isDarkMode ? Color(0xff959595) : Color(0xff555555),
             );
           }
 
@@ -59,9 +55,7 @@ class FavoriteButton extends StatelessWidget {
             onPressed: () {},
             icon: Icon(Icons.favorite_outline_outlined),
             iconSize: 25,
-            color: context.isDarkMode
-                ? Color(0xff959595)
-                : Color(0xff555555),
+            color: context.isDarkMode ? Color(0xff959595) : Color(0xff555555),
           );
         },
       ),

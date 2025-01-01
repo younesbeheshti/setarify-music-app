@@ -15,6 +15,7 @@ import 'data/sources/storage/secure_storage_service.dart';
 import 'domain/usecases/auth/get_user.dart';
 import 'domain/usecases/auth/sign_in.dart';
 import 'domain/usecases/song/get_play_list.dart';
+import 'domain/usecases/song/get_user_favorite_song.dart';
 
 final sl = GetIt.instance;
 
@@ -66,6 +67,10 @@ Future<void> initializeDependencies() async {
 
   sl.registerSingleton<IsFavoriteSongUseCase>(
     IsFavoriteSongUseCase(),
+  );
+
+  sl.registerSingleton<GetUserFavoriteSongUseCase>(
+    GetUserFavoriteSongUseCase(),
   );
 
   sl.registerSingleton<GetUserUseCase>(

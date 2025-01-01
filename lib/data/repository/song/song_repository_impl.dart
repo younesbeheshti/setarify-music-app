@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:spotify_flutter_apk/data/sources/songs/song_backed_service.dart';
+import 'package:spotify_flutter_apk/domain/entities/song/song_entity.dart';
 import 'package:spotify_flutter_apk/domain/repository/music/song_repo.dart';
 
 import '../../../service_locator.dart';
@@ -16,8 +17,8 @@ class SongRepositoryImpl implements SongsRepository {
   }
 
   @override
-  Future<Either> addOrRemoveFavoriteSongs(String songId) async {
-    return await sl<SongService>().addOrRemoveFavoriteSongs(songId);();
+  Future<Either> addOrRemoveFavoriteSongs(SongEntity songEntity) async {
+    return await sl<SongService>().addOrRemoveFavoriteSongs(songEntity);
   }
 
   @override
@@ -26,9 +27,8 @@ class SongRepositoryImpl implements SongsRepository {
   }
 
   @override
-  Future<Either> getUserFavoriteSongs() {
-    // TODO: implement getUserFavoriteSongs
-    throw UnimplementedError();
+  Future<Either> getUserFavoriteSongs() async{
+    return await sl<SongService>().getUserFavoriteSongs();
   }
 
   @override

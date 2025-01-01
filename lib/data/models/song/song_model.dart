@@ -33,25 +33,6 @@ class SongModel {
     release_date = json['release_date'];
     liked = json['liked'];
   }
-
-  // String? title;
-  // String? artist;
-  // num? duration;
-  // Timestamp? releaseDate;
-  //
-  // SongModel({
-  //   required this.title,
-  //   required this.artist,
-  //   required this.duration,
-  //   required this.releaseDate,
-  // });
-  //
-  // SongModel.fromJson(Map<String, dynamic> json) {
-  //   title = json['title'];
-  //   artist = json['artist'];
-  //   duration = json['duration'];
-  //   releaseDate = json['releaseDate'];
-  // }
 }
 
 extension SongModelExt on SongModel {
@@ -70,15 +51,3 @@ extension SongModelExt on SongModel {
     );
   }
 }
-
-
-// extension SongEntityExt on SongEntity {
-//   SongModel toModel() {
-//     return SongModel(
-//       title: title!,
-//       artist: artist!,
-//       duration: duration!,
-//       releaseDate: releaseDate!,
-//     );
-//   }
-// }

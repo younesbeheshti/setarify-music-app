@@ -39,8 +39,8 @@ class _NewsSongsState extends State<NewsSongs> {
               );
             }
             if (state is NewsSongsLoaded) {
-              return _songs(songsCover);
-              // return _songs(state.songs);
+              // return _songs(songsCover);
+              return _songs(state.songs);
             }
 
             return Container();
@@ -50,8 +50,8 @@ class _NewsSongsState extends State<NewsSongs> {
     );
   }
 
-  // Widget _songs(List<SongEntity> songs)
-  Widget _songs(List songs) {
+  Widget _songs(List<SongEntity> songs) {
+    // Widget _songs(List songs) {
     return ListView.separated(
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
@@ -60,11 +60,8 @@ class _NewsSongsState extends State<NewsSongs> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder:
-                    (BuildContext context) =>
-                        // SongPlayerPage(),
-                        //TODO : pass the songs
-                        SongPlayerPage(songEntity : songs[index]),
+                builder: (BuildContext context) =>
+                    SongPlayerPage(songEntity: songs[index]),
               ),
             );
           },
@@ -78,8 +75,7 @@ class _NewsSongsState extends State<NewsSongs> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
-                        // image: NetworkImage(AppURLs.imageUrl + songs[index].image + ' - ' + songs[index].title + 'jpg?' + AppURLs.mediaAlt),
-                        image: AssetImage(AppImages.musicCover),
+                        image: NetworkImage(songs[index].cover!),
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -105,28 +101,24 @@ class _NewsSongsState extends State<NewsSongs> {
                     ),
                   ),
                 ),
-
                 SizedBox(
                   height: 10,
                 ),
-                // Text(songs[index].title, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),),
                 Text(
-                  'music title',
+                  songs[index].title,
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                   ),
                 ),
-
                 SizedBox(
                   height: 5,
                 ),
-                // Text(songs[index].artist, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),),
                 Text(
-                  'artist name',
+                  songs[index].artist[0]['name'],
                   style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
                   ),
                 ),
               ],

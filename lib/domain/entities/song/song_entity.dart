@@ -6,7 +6,7 @@ class SongEntity {
   String?  release_date;
   final Map album;
   String? cover;
-  final bool liked;
+  bool? liked;
   String? songUrl;
 
   // final String title;

@@ -137,9 +137,13 @@ class AuthBackendServiceImpl implements AuthBackendService {
 
       if (response.statusCode == 200) {
         print(response.body);
+        final username = await sl<SecureStorageService>().read(key: "username");
+        final name = await sl<SecureStorageService>().read(key: "username");
         UserModel userModel = UserModel.fromJson(json.decode(response.body));
         userModel.imageUrl =
-            userModel.imageUrl ?? AppImages.userDefaultProfileImage;
+            userModel.imageUrl ?? AppImages.userImage;
+        userModel.userName = username;
+        userModel.fullName = name;
 
         UserEntity userEntity = userModel.toEntity();
 

@@ -10,26 +10,10 @@ import '../../song_player/pages/song_player.dart';
 import '../bloc/play_list_cubit.dart';
 import '../bloc/play_list_state.dart';
 
-//TODO : after fetching music form server(state.songs), turn in to stateless widget
 
-class PlayList extends StatefulWidget {
+
+class PlayList extends StatelessWidget {
   PlayList({super.key});
-
-  @override
-  State<PlayList> createState() => _PlayListState();
-}
-
-class _PlayListState extends State<PlayList> {
-  List songs = [
-    AppImages.musicCover,
-    AppImages.musicCover,
-    AppImages.musicCover,
-    AppImages.musicCover,
-    AppImages.musicCover,
-    AppImages.musicCover,
-    AppImages.musicCover,
-    AppImages.musicCover,
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +86,6 @@ class _PlayListState extends State<PlayList> {
               MaterialPageRoute(
                 builder: (BuildContext context) =>
 
-                    //TODO : pass the music
                     SongPlayerPage(songEntity : songs[index]),
                     // SongPlayerPage(),
               ),
@@ -168,9 +151,8 @@ class _PlayListState extends State<PlayList> {
                   SizedBox(
                     width: 20,
                   ),
-                  //TODO : add toggle favorite
-                  // FavoriteButton(songEntity: songs[index]),
-                  FavoriteButton(),
+                  FavoriteButton(songEntity: songs[index]),
+                  // FavoriteButton(),
                 ],
               ),
             ],

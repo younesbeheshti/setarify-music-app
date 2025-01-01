@@ -7,6 +7,6 @@ class AppImages {
   static const String authBG = basePath + "auth_bg.png";
   static const String homeArtist = basePath + "home_artist.png";
   static const String musicCover = basePath + "music_cover.png";
-  static const String userDefaultProfileImage = basePath + "user_default_profile.png";
+  static const String userImage = basePath + "user1.png";
 
 }

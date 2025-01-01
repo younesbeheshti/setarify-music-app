@@ -9,7 +9,6 @@ import 'package:spotify_flutter_apk/presentation/song_player/bloc/song_player_cu
 import 'package:spotify_flutter_apk/presentation/song_player/bloc/song_player_state.dart';
 
 class SongPlayerPage extends StatelessWidget {
-  //TODO : get songEntity
   final SongEntity songEntity;
 
   SongPlayerPage({super.key, required this.songEntity});
@@ -57,16 +56,13 @@ class SongPlayerPage extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         image: DecorationImage(
-          image: Image.asset(AppImages.musicCover).image,
+          image: NetworkImage(songEntity.cover!),
           fit: BoxFit.cover,
-          //TODO : network image from backend
-          // image: NetworkImage(AppURLs.imageUrl + songEntity.image + ' - ' + songEntity.title + 'jpg?' + AppURLs.mediaAlt),
         ),
       ),
     );
   }
 
-  //TODO : songs detail
   Widget _songDetail() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,8 +71,7 @@ class SongPlayerPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'music title',
-              // songEntity.title,
+              songEntity.title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 22,
@@ -86,8 +81,8 @@ class SongPlayerPage extends StatelessWidget {
               height: 5,
             ),
             Text(
-              'music artist',
-              // songEntity.artist,
+              // 'music artist',
+              songEntity.artist[0]['name'],
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
@@ -96,9 +91,8 @@ class SongPlayerPage extends StatelessWidget {
             )
           ],
         ),
-        FavoriteButton(),
-        //TODO : favorite button
-        // FavoriteButton(songEntity: songEntity),
+
+        FavoriteButton(songEntity: songEntity),
       ],
     );
   }
