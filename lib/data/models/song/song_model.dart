@@ -27,11 +27,11 @@ class SongModel {
     title = json['title'];
     artist = json['artist'];
     album = json['album'];
-    cover = json['cover']?? "";
+    cover = json['cover'];
     slug = json['slug'];
     genre = json['genre'];
     release_date = json['release_date']?? "";
-    liked = json['liked']?? false;
+    liked = json['liked'];
   }
 }
 

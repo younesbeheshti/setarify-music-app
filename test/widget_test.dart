@@ -122,4 +122,9 @@ Future<void> refreshToken() async {
   } else {
     throw Exception('Failed to refresh token: ${response.body}');
   }
+
+  Future<void> logoutUser() async {
+    await storage.delete(key: 'jwt');
+    print('Logged out');
+  }
 }

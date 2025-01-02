@@ -10,5 +10,9 @@ abstract class AuthRepository {
 
   Future<Either> getUser();
 
+  Future<void> logoutUser();
+
+  Future<bool> handleTokenExpiry();
+
 
 }

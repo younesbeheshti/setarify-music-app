@@ -24,4 +24,14 @@ class AuthRepositoryImpl implements AuthRepository {
     return await sl<AuthBackendService>().getUser();
   }
 
+  @override
+  Future<void> logoutUser() async {
+    return await sl<AuthBackendService>().logoutUser();
+  }
+
+  @override
+  Future<bool> handleTokenExpiry() async{
+    return await sl<AuthBackendService>().handleTokenExpiry();
+  }
+
 }

@@ -1,10 +1,14 @@
+import 'dart:ffi';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:spotify_flutter_apk/data/repository/song/song_repository_impl.dart';
 import 'package:spotify_flutter_apk/data/sources/auth/auth_backend_service.dart';
 import 'package:spotify_flutter_apk/domain/repository/auth/auth.dart';
 import 'package:spotify_flutter_apk/domain/repository/music/song_repo.dart';
+import 'package:spotify_flutter_apk/domain/usecases/auth/log_out.dart';
 import 'package:spotify_flutter_apk/domain/usecases/auth/sign_up.dart';
+import 'package:spotify_flutter_apk/domain/usecases/auth/token_expiry.dart';
 import 'package:spotify_flutter_apk/domain/usecases/song/add_or_remove_favorite_song.dart';
 import 'package:spotify_flutter_apk/domain/usecases/song/get_news_songs.dart';
 import 'package:spotify_flutter_apk/domain/usecases/song/is_favorite_song.dart';
@@ -78,6 +82,13 @@ Future<void> initializeDependencies() async {
   );
 
 
+  sl.registerSingleton<LogOutUseCase>(
+    LogOutUseCase(),
+  );
+
+  sl.registerSingleton<HandleTokenExpiryUseCase>(
+    HandleTokenExpiryUseCase(),
+  );
 
 
 

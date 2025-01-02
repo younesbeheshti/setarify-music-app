@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify_flutter_apk/common/helpers/is_dark_mode.dart';
 import 'package:spotify_flutter_apk/common/widgets/appbar/app_bar.dart';
 import 'package:spotify_flutter_apk/core/configs/theme/app_colors.dart';
+import 'package:spotify_flutter_apk/domain/usecases/auth/log_out.dart';
+import 'package:spotify_flutter_apk/presentation/auth/pages/signup_or_signin.dart';
 import 'package:spotify_flutter_apk/presentation/profile/bloc/favorite_songs_cubit.dart';
 import 'package:spotify_flutter_apk/presentation/profile/bloc/favorite_songs_state.dart';
 import 'package:spotify_flutter_apk/presentation/profile/bloc/profile_info_cubit.dart';
@@ -11,6 +13,7 @@ import 'package:spotify_flutter_apk/presentation/song_player/pages/song_player.d
 
 import '../../../common/widgets/favorite_button/favorite_button.dart';
 import '../../../core/configs/assets/app_images.dart';
+import '../../../service_locator.dart';
 import '../bloc/profile_info_state.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -22,6 +25,20 @@ class ProfilePage extends StatelessWidget {
       appBar: BasicAppBar(
         title: Text("Profile"),
         backgroundColor: Color(0xff2C2B2B),
+        action: PopupMenuButton<String>(
+          onSelected: (value) async {
+            // Handle menu item selection
+            await sl<LogOutUseCase>().call();
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignUpOrSignInPage()));
+          },
+          icon: Icon(Icons.more_vert), // Icon for the menu trigger
+          itemBuilder: (BuildContext context) => [
+            PopupMenuItem(
+              value: 'Log Out',
+              child: Text('Log out'),
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
