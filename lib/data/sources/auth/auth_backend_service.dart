@@ -194,7 +194,7 @@ class AuthBackendServiceImpl implements AuthBackendService {
     final token = await storage.read(key: 'access_token');
     final refToken = await storage.read(key: "refresh_token");
 
-    if(isTokenExpired(refToken!)){
+    if(refToken != null && isTokenExpired(refToken)){
 
       final username = await storage.read(key: "username");
       final password = await storage.read(key: "password");
