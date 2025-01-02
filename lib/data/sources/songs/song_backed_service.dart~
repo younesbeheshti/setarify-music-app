@@ -66,8 +66,6 @@ class SongServiceImpl implements SongService {
         'Authorization': 'Bearer $token',
       });
 
-      print(json.decode(respond.body));
-
       for (var element in json.decode(respond.body)) {
         var songModel = SongModel.fromJson(element);
 

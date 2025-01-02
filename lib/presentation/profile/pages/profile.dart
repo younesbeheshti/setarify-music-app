@@ -23,14 +23,16 @@ class ProfilePage extends StatelessWidget {
         title: Text("Profile"),
         backgroundColor: Color(0xff2C2B2B),
       ),
-      body: Column(
-        children: [
-          _profileInfo(context),
-          SizedBox(
-            height: 30,
-          ),
-          _favoriteSongs(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            _profileInfo(context),
+            SizedBox(
+              height: 30,
+            ),
+            _favoriteSongs(),
+          ],
+        ),
       ),
     );
   }
@@ -162,6 +164,7 @@ class ProfilePage extends StatelessWidget {
 
                   return Flexible(
                     child: ListView.separated(
+                      physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         return GestureDetector(

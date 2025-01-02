@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotify_flutter_apk/core/configs/assets/app_vectors.dart';
+import 'package:spotify_flutter_apk/data/sources/storage/secure_storage_service.dart';
+import 'package:spotify_flutter_apk/presentation/home/pages/home.dart';
 import 'package:spotify_flutter_apk/presentation/intro/pages/get_started.dart';
+
+import '../../../service_locator.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -22,12 +26,24 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> redirect() async {
     await Future.delayed(const Duration(seconds: 2));
 
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext context) => const GetStartedPage(),
-      ),
-    );
+    final token = await sl<SecureStorageService>().read(key: "access_token");
+
+    if(token != null) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => const HomePage(),
+        ),
+      );
+      return;
+    }else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => const GetStartedPage(),
+        ),
+      );
+    }
   }
 
   @override

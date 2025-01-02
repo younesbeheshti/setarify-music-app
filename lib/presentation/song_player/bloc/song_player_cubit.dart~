@@ -6,13 +6,15 @@ import 'package:spotify_flutter_apk/presentation/song_player/bloc/song_player_st
 
 import '../../../service_locator.dart';
 
-class SongPlayerCubit extends Cubit<SongPlayerState> {
+class SongPlayerCubit extends Cubit<SongPlayerState>{
+
   AudioPlayer audioPlayer = AudioPlayer();
 
   Duration songDuration = Duration.zero;
   Duration songPosition = Duration.zero;
 
   SongPlayerCubit() : super(SongPlayerLoading()) {
+
     audioPlayer.positionStream.listen((position) {
       songPosition = position;
       updateSongPlayer();
@@ -23,17 +25,18 @@ class SongPlayerCubit extends Cubit<SongPlayerState> {
     });
   }
 
-  void updateSongPlayer() {
+
+  void updateSongPlayer(){
     emit(SongPlayerLoaded());
   }
 
   Future<void> loadSong(String url) async {
     final fileUrl = sl<SongsRepository>().getSongUrl(url);
 
-    try {
+    try{
       await audioPlayer.setUrl(await fileUrl);
       emit(SongPlayerLoaded());
-    } catch (e) {
+    }catch(e) {
       emit(SongPlayerFailure());
     }
   }
@@ -49,7 +52,7 @@ class SongPlayerCubit extends Cubit<SongPlayerState> {
 
   void seekTo(Duration position) {
     audioPlayer.seek(position);
-    emit(SongPlayerLoaded());
+    emit(SongPlayerLoaded());  // Re-emitting to refresh the UI after seeking
   }
 
   @override
@@ -57,4 +60,5 @@ class SongPlayerCubit extends Cubit<SongPlayerState> {
     audioPlayer.dispose();
     return super.close();
   }
+
 }
