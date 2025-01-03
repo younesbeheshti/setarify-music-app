@@ -24,7 +24,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: BasicAppBar(
         title: Text("Profile"),
-        backgroundColor: Color(0xff2C2B2B),
+        backgroundColor: context.isDarkMode ? Color(0xff2C2B2B) : Colors.white,
         action: PopupMenuButton<String>(
           onSelected: (value) async {
             // Handle menu item selection
@@ -184,6 +184,14 @@ class ProfilePage extends StatelessWidget {
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
+
+                        var previousSong = index == 0
+                            ? state.favoriteSongs[state.favoriteSongs.length - 1]
+                            : state.favoriteSongs[index - 1];
+                        var nextSong = index == state.favoriteSongs.length - 1
+                            ? state.favoriteSongs[0]
+                            : state.favoriteSongs[index + 1];
+
                         return GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -191,7 +199,9 @@ class ProfilePage extends StatelessWidget {
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     SongPlayerPage(
-                                        songEntity: state.favoriteSongs[index]),
+                                        songs: state.favoriteSongs,
+                                      index: index,
+                                    ),
                               ),
                             );
                           },

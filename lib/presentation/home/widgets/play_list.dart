@@ -10,8 +10,6 @@ import '../../song_player/pages/song_player.dart';
 import '../bloc/play_list_cubit.dart';
 import '../bloc/play_list_state.dart';
 
-
-
 class PlayList extends StatelessWidget {
   PlayList({super.key});
 
@@ -29,7 +27,6 @@ class PlayList extends StatelessWidget {
           }
 
           if (state is PlayListLoaded) {
-
             print("PlayListLoaded");
 
             return Padding(
@@ -52,9 +49,10 @@ class PlayList extends StatelessWidget {
                       Text(
                         'See More',
                         style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xffCC6C6C6),),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xffCC6C6C6),
+                        ),
                       ),
                     ],
                   ),
@@ -72,22 +70,27 @@ class PlayList extends StatelessWidget {
     );
   }
 
-  Widget _songs(List<SongEntity> songs){
-  // Widget _songs(List songs) {
+  Widget _songs(List<SongEntity> songs) {
+    // Widget _songs(List songs) {
     return ListView.separated(
       physics: NeverScrollableScrollPhysics(),
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
       itemBuilder: (context, index) {
+        var previousSong =
+            index == 0 ? songs[songs.length - 1] : songs[index - 1];
+        var nextSong = index == songs.length - 1 ? songs[0] : songs[index + 1];
+
         return GestureDetector(
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) =>
-
-                    SongPlayerPage(songEntity : songs[index]),
-                    // SongPlayerPage(),
+                builder: (BuildContext context) => SongPlayerPage(
+                  songs: songs,
+                  index: index,
+                ),
+                // SongPlayerPage(),
               ),
             );
           },

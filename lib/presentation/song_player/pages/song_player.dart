@@ -9,9 +9,18 @@ import 'package:spotify_flutter_apk/presentation/song_player/bloc/song_player_cu
 import 'package:spotify_flutter_apk/presentation/song_player/bloc/song_player_state.dart';
 
 class SongPlayerPage extends StatelessWidget {
-  final SongEntity songEntity;
+  // final SongEntity songEntityPrevious;
+  // final SongEntity songEntity;
+  // final SongEntity songEntityNext;
 
-  SongPlayerPage({super.key, required this.songEntity});
+  final int index;
+  final List<SongEntity> songs;
+
+  SongPlayerPage({
+    super.key,
+    required this.songs,
+    required this.index,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +38,7 @@ class SongPlayerPage extends StatelessWidget {
         ),
       ),
       body: BlocProvider(
-        create: (context) => SongPlayerCubit()..loadSong(songEntity.slug),
+        create: (context) => SongPlayerCubit()..loadSong(songs[index].slug),
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
           child: Column(
@@ -56,7 +65,7 @@ class SongPlayerPage extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         image: DecorationImage(
-          image: NetworkImage(songEntity.cover!),
+          image: NetworkImage(songs[index].cover!),
           fit: BoxFit.cover,
         ),
       ),
@@ -71,7 +80,7 @@ class SongPlayerPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              songEntity.title,
+              songs[index].title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 22,
@@ -82,7 +91,7 @@ class SongPlayerPage extends StatelessWidget {
             ),
             Text(
               // 'music artist',
-              songEntity.artist[0]['name'],
+              songs[index].artist[0]['name'],
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
@@ -91,8 +100,7 @@ class SongPlayerPage extends StatelessWidget {
             )
           ],
         ),
-
-        FavoriteButton(songEntity: songEntity),
+        FavoriteButton(songEntity: songs[index]),
       ],
     );
   }
@@ -143,23 +151,89 @@ class SongPlayerPage extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              GestureDetector(
-                onTap: () {
-                  context.read<SongPlayerCubit>().playOrPauseSong();
-                },
-                child: Container(
-                  height: 60,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.primary,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      // TODO : add previous song
+                      context.read<SongPlayerCubit>().playOrPauseSong();
+
+                      int previousIndex = index == 0 ? songs.length : index - 1;
+
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SongPlayerPage(
+                            songs: songs,
+                            index: previousIndex,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      height: 45,
+                      width: 45,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.primary,
+                      ),
+                      child: Icon(Icons.skip_previous_rounded),
+                    ),
                   ),
-                  child: Icon(
-                    context.read<SongPlayerCubit>().audioPlayer.playing
-                        ? Icons.pause
-                        : Icons.play_arrow_rounded,
+                  SizedBox(
+                    width: 15,
                   ),
-                ),
+                  GestureDetector(
+                    onTap: () {
+                      context.read<SongPlayerCubit>().playOrPauseSong();
+                    },
+                    child: Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.primary,
+                      ),
+                      child: Icon(
+                        context.read<SongPlayerCubit>().audioPlayer.playing
+                            ? Icons.pause
+                            : Icons.play_arrow_rounded,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      context.read<SongPlayerCubit>().playOrPauseSong();
+                      // TODO : add next song
+
+                      int nextIndex = index == songs.length - 1 ? 0 : index + 1;
+
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SongPlayerPage(
+                            songs: songs,
+                            index: nextIndex,
+                          ),
+                        ),
+                      );
+
+                    },
+                    child: Container(
+                      height: 45,
+                      width: 45,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.primary,
+                      ),
+                      child: Icon(Icons.skip_next_rounded),
+                    ),
+                  ),
+                ],
               ),
             ],
           );

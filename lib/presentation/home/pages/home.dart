@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ),
         ),
         Text(
-          "Videos",
+          "Albums",
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,

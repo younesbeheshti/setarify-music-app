@@ -55,13 +55,19 @@ class _NewsSongsState extends State<NewsSongs> {
     return ListView.separated(
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
+        var previousSong =
+            index == 0 ? songs[songs.length - 1] : songs[index - 1];
+        var nextSong = index == songs.length - 1 ? songs[0] : songs[index + 1];
+
         return GestureDetector(
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) =>
-                    SongPlayerPage(songEntity: songs[index]),
+                builder: (BuildContext context) => SongPlayerPage(
+                  songs: songs,
+                  index: index,
+                ),
               ),
             );
           },
